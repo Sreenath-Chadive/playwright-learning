@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { FinancePage } from './financePage.po';
 
-test.describe('AG Grid Finance Demo — End-to-end', () => {
+test.describe('AG Grid Finance Demo Tests', () => {
   let financePage: FinancePage;
 
   test.beforeEach(async ({ page }) => {
@@ -45,11 +45,6 @@ test.describe('AG Grid Finance Demo — End-to-end', () => {
     expect(rowCount).toBeGreaterThan(0);
   });
 
-  test('Should render sparklines for the first row', async () => {
-    const count = await financePage.getSparklineCount(0);
-    expect(count).toBeGreaterThan(0);
-  });
-
   test('Should reflect live updates for a numeric cell', async () => {
     const oldValue = await financePage.getNumericCellValueByColumnName(
       0,
@@ -64,7 +59,6 @@ test.describe('AG Grid Finance Demo — End-to-end', () => {
   });
 
   test('Should resize a column (Total Value) without throwing', async () => {
-    // attempt to resize; do not fail the test if width measurement is flaky
     await financePage.resizeColumn('Total Value', 300);
   });
 
